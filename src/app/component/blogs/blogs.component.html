@@ -1,0 +1,32 @@
+<h1 class="text-primary mt-5">Blog component items</h1>
+@if (!blogInfo.errorMessage) {
+<mat-card>
+  <button (click)="addBlog()" mat-raised-button color="primary">Add blogs</button>
+  @for (item of blogInfo.blogList; track $index) {
+
+  <mat-card-header>
+    <h2>{{ item.title }}</h2>
+    <div style="text-align: right; width: 100%;">
+      <button class="mx-1" (click)="onEdit(item.id)" mat-raised-button color="primary">Edit</button>
+      <button (click)="onDelet(item.id)" mat-raised-button color="warn">Delete</button>
+
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ item.description }}</p>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  }
+</mat-card>
+}
+
+@if (blogInfo.errorMessage) {
+<mat-card >
+  <mat-card-header>
+    <h1>Error occured</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <p class="text-danger">{{blogInfo.errorMessage}} </p>
+  </mat-card-content>
+</mat-card>
+}
